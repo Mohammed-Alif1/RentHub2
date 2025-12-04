@@ -1,0 +1,25 @@
+<svg width="300" height="80" viewBox="0 0 300 80" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100%" height="100%" fill="none"/>
+  <text
+    x="10"
+    y="55"
+    font-size="55"
+    font-weight="700"
+    font-family="Poppins, Arial, sans-serif"
+    fill="#8ED6DF"
+    stroke="#333"
+    stroke-width="3"
+  >
+    R
+  </text>
+  <text
+    x="75"
+    y="55"
+    font-size="45"
+    font-weight="700"
+    font-family="Poppins, Arial, sans-serif"
+    fill="#333"
+  >
+    RentalHub
+  </text>
+</svg>
