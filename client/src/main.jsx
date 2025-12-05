@@ -7,7 +7,7 @@ import { MotionConfig } from 'motion/react'
 
 
 createRoot(document.getElementById('root')).render(
-  <BrowserRouter basename="/Mini-proj">
+  <BrowserRouter>
     <MotionConfig viewport={{ once: true }}>
       <AppContextProvider>
         <App />
