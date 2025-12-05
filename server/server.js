@@ -11,20 +11,23 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Initialize Express App
 const app = express();
-await connectDB()
+await connectDB();
 
-// Middleware
-app.use(cors());
+// ✅ Correct CORS (ONLY ONCE)
+app.use(cors({
+    origin: "https://rent-hub2.vercel.app",
+    credentials: true,
+}));
+
 app.use(express.json());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
+// Routes
 app.get('/', (req, res) => res.send("Server is running"))
 app.use('/api/user', userRouter)
 app.use('/api/owner', ownerRouter)
 app.use('/api/bookings', bookingRouter)
-
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`))

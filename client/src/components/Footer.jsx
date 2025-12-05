@@ -24,9 +24,7 @@ const Footer = () => {
                         className="h-12 w-auto"
                     />
                     <p className="mt-6 text-sm">
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                        when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                        Offering a wide selection of rental cars, seamless booking, and dependable service. Whether it's daily rides or long trips, we make car rentals simple, affordable, and convenient.
                     </p>
                 </motion.div>
                 <div className="flex-1 flex items-start md:justify-end gap-20">
@@ -50,8 +48,8 @@ const Footer = () => {
                     >
                         <h2 className="font-semibold mb-5 text-gray-800">Get in touch</h2>
                         <div className="text-sm space-y-2">
-                            <p>+1-212-456-7890</p>
-                            <p>contact@example.com</p>
+                            <p>+91 9380898410</p>
+                            <p>shammaschammu000@gmail.com</p>
                         </div>
                     </motion.div>
                 </div>
@@ -62,7 +60,7 @@ const Footer = () => {
                 transition={{ duration: 0.6, delay: 0.5 }}
                 className="pt-4 text-center text-xs md:text-sm pb-5"
             >
-                Copyright 2024 ©. All Right Reserved.
+                Copyright 2026 ©. All Right Reserved.
             </motion.p>
         </motion.footer>
     )
