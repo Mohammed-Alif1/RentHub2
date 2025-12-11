@@ -5,7 +5,7 @@ import { assets } from '../../assets/assets';
 import { toast } from 'react-toastify';
 
 const ManageCars = () => {
-    const { isOwner, axios, currency } = useAppContext();
+    const { axios, currency, user } = useAppContext();
     const [cars, setCars] = useState([]);
 
     const fetchOwnerCars = async () => {
@@ -54,8 +54,12 @@ const ManageCars = () => {
     };
 
     useEffect(() => {
-        isOwner && fetchOwnerCars();
-    }, [isOwner]);
+        // Wait for user to be loaded before fetching cars
+        // User is set immediately in Login.jsx, so this ensures auth is ready
+        if (user) {
+            fetchOwnerCars();
+        }
+    }, [user]);
 
     return (
         <div className='px-4 pt-10 md:px-10 w-full'>

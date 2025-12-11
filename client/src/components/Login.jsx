@@ -4,7 +4,7 @@ import { toast } from "react-hot-toast";
 
 const Login = () => {
 
-  const { setShowLogin, axios, setToken, setIsOwner, navigate } = useAppContext();
+  const { setShowLogin, axios, setToken, setIsOwner, setUser, navigate } = useAppContext();
   const [state, setState] = useState("login"); // "login" or "register"
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -16,8 +16,16 @@ const Login = () => {
       const { data } = await axios.post(`/api/user/${state}`, { name, email, password });
 
       if (data.success) {
+        // Set the token in state and localStorage
         setToken(data.token);
         localStorage.setItem("token", data.token);
+
+        // IMPORTANT: Set axios authorization header immediately
+        // This ensures subsequent API calls have the token before navigation
+        axios.defaults.headers.common["Authorization"] = `Bearer ${data.token}`;
+
+        // Set user data immediately to avoid async state issues
+        setUser(data.user);
 
         // Check if user role is 'owner'
         const isUserOwner = data.user?.role === 'owner';

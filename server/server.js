@@ -14,9 +14,23 @@ const __dirname = path.dirname(__filename);
 const app = express();
 await connectDB();
 
-// ✅ Correct CORS (ONLY ONCE)
+// ✅ CORS Configuration - Allow both local development and production
+const allowedOrigins = [
+    "http://localhost:5173",  // Local Vite dev server
+    "https://rent-hub2.vercel.app"  // Production Vercel deployment
+];
+
 app.use(cors({
-    origin: "https://rent-hub2.vercel.app",
+    origin: function (origin, callback) {
+        // Allow requests with no origin (like mobile apps or curl requests)
+        if (!origin) return callback(null, true);
+
+        if (allowedOrigins.indexOf(origin) !== -1) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
     credentials: true,
 }));
 

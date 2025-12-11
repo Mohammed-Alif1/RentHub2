@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 
 const Dashboard = () => {
 
-  const { axios, isOwner, currency, navigate } = useAppContext()
+  const { axios, currency, navigate, user } = useAppContext()
 
   const [data, setData] = useState({
     totalCars: 0,
@@ -40,12 +40,12 @@ const Dashboard = () => {
   }
 
   useEffect(() => {
-    if (isOwner) {
+    // Wait for user to be loaded before fetching dashboard
+    // User is set immediately in Login.jsx, so this ensures auth is ready
+    if (user) {
       fetchDashboardData()
-    } else {
-      navigate('/')
     }
-  }, [isOwner, navigate])
+  }, [user])
 
   return (
     <div className='px-4 pt-10 md:px-10 flex-1'>

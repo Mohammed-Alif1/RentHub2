@@ -5,7 +5,7 @@ import { useAppContext } from '../../context/AppContext';
 import { toast } from 'react-toastify';
 
 const ManageBookings = () => {
-    const { currency, axios } = useAppContext();
+    const { currency, axios, user } = useAppContext();
     const [bookings, setBookings] = useState([]);
 
     const fetchOwnerBookings = async () => {
@@ -42,8 +42,12 @@ const ManageBookings = () => {
     };
 
     useEffect(() => {
-        fetchOwnerBookings();
-    }, []);
+        // Wait for user to be loaded before fetching bookings
+        // User is set immediately in Login.jsx, so this ensures auth is ready
+        if (user) {
+            fetchOwnerBookings();
+        }
+    }, [user]);
 
     return (
         <div className='px-4 pt-10 md:px-10 w-full'>

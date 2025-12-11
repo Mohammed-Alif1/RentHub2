@@ -18,6 +18,7 @@ export const AppContextProvider = ({ children }) => {
     const [returnDate, setReturnDate] = useState("");
     const [cars, setCars] = useState([]);
 
+
     // function to check if user is logged in
     const fetchUser = async () => {
         try {
@@ -32,13 +33,6 @@ export const AppContextProvider = ({ children }) => {
             console.error("Error fetching user:", error?.response?.data || error.message);
         }
     };
-    // useEffect to retrieve the token from localStorage
-    useEffect(() => {
-        const savedToken = localStorage.getItem("token");
-        if (savedToken) {
-            setToken(savedToken);
-        }
-    }, []);
 
     // useEffect to fetch user data when token is available
     useEffect(() => {
@@ -47,6 +41,7 @@ export const AppContextProvider = ({ children }) => {
             fetchUser();
         }
     }, [token]);
+
 
     // function to fetch cars
     const fetchCars = async () => {
