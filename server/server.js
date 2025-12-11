@@ -7,12 +7,20 @@ import ownerRouter from "./routes/OwnerRoutes.js";
 import bookingRouter from "./routes/BookingRoutes.js";
 import path from 'path';
 import { fileURLToPath } from 'url';
+import fs from 'fs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
 await connectDB();
+
+// Create uploads directory if it doesn't exist (needed for Render's ephemeral filesystem)
+const uploadsDir = path.join(__dirname, 'uploads');
+if (!fs.existsSync(uploadsDir)) {
+    fs.mkdirSync(uploadsDir, { recursive: true });
+    console.log('Created uploads directory');
+}
 
 // ✅ CORS Configuration - Allow both local development and production
 const allowedOrigins = [
